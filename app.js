@@ -22,6 +22,8 @@ var dbCredentials = {
 	dbName : 'my_sample_db'
 };
 
+var mql = require('mqlight')
+
 
 
 // all environments
@@ -416,6 +418,28 @@ app.get('/api/favorites', function(request, response) {
 	});
 
 });
+
+
+var services = JSON.parse(process.env.VCAP_SERVICES);
+mqlightService = services['messagehub'][0];
+opts.service = mqlightService.credentials.mqlight_lookup_url;
+opts.user = mqlightService.credentials.user;
+opts.password = mqlightService.credentials.password;
+var mqlightClient = mqlight.createClient(opts, function(err) {
+	if (err) {
+			console.error('Connection to ' + opts.service + ' using client-id ' + mqlightClient.id + ' failed: ' + err);
+		}
+		else {
+			console.log('Connected to ' + opts.service + ' using client-id ' + mqlightClient.id);
+		}
+}
+
+app.get('/api/mq/send/:word', function(request, response){
+	var word =req.params.word
+	mqlightClient.send('mytopic', word)
+
+}
+
 
 
 

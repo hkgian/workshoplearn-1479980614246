@@ -13,6 +13,7 @@
     "method-override": "2.3.x",
     "morgan": "1.6.x",
     "errorhandler": "1.4.x",
+    "mqlight" : ">=1.0.2015061000",
     "connect-multiparty": "2.0.x"
   },
   "repository": {},

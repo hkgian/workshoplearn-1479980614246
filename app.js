@@ -432,7 +432,7 @@ var mqlightClient = mqlight.createClient(opts, function(err) {
 		else {
 			console.log('Connected to ' + opts.service + ' using client-id ' + mqlightClient.id);
 		}
-}
+})
 
 app.get('/api/mq/send/:word', function(request, response){
 	var word =req.params.word

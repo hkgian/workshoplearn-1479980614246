@@ -437,13 +437,7 @@ var mqlightClient = mqlight.createClient(opts, function(err) {
 app.get('/api/mq/send/:word', function(request, response){
 	var word =req.params.word
 	mqlightClient.send('mytopic', word)
-
-}
-
-
-
-
-
+})
 
 http.createServer(app).listen(app.get('port'), '0.0.0.0', function() {
 	console.log('Express server listening on port ' + app.get('port'));

@@ -22,7 +22,7 @@ var dbCredentials = {
 	dbName : 'my_sample_db'
 };
 
-var mql = require('mqlight')
+var mqlight = require('mqlight')
 
 
 

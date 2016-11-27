@@ -422,6 +422,7 @@ app.get('/api/favorites', function(request, response) {
 
 var services = JSON.parse(process.env.VCAP_SERVICES);
 mqlightService = services['messagehub'][0];
+var opts = {};
 opts.service = mqlightService.credentials.mqlight_lookup_url;
 opts.user = mqlightService.credentials.user;
 opts.password = mqlightService.credentials.password;

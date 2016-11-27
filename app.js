@@ -435,6 +435,14 @@ var mqlightClient = mqlight.createClient(opts, function(err) {
 		}
 })
 
+mqlightClient.on('started', function() {
+	mqlightClient.subscribe('mytopic');
+	mqlightClient.on('message', function(data, delivery) {
+          console.log('MESSAGE RECEIVED: ', data);
+		  console.log("DELIVERY:", delivery)
+     });
+});
+
 app.get('/api/mq/send/:word', function(request, response){
 	var word =request.params.word
 	console.log("################################",word)

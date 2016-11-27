@@ -437,8 +437,9 @@ var mqlightClient = mqlight.createClient(opts, function(err) {
 
 app.get('/api/mq/send/:word', function(request, response){
 	var word =request.params.word
+	console.log("################################",word)
 	mqlightClient.send('mytopic', word)
-	response.send("", word, "has been published on the topic 'mytopic' ")
+	response.send("hey! ", word, "has been published on the topic 'mytopic' ")
 })
 
 http.createServer(app).listen(app.get('port'), '0.0.0.0', function() {

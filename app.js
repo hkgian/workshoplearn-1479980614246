@@ -24,7 +24,7 @@ var dbCredentials = {
 
 var mqlight = require('mqlight')
 
-
+var TOPIC_NAME = 'mytopic'
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -435,6 +435,8 @@ var mqlightClient = mqlight.createClient(opts, function(err) {
 		}
 })
 
+
+/*
 mqlightClient.on('started', function() {
 	mqlightClient.subscribe('mytopic');
 	mqlightClient.on('message', function(data, delivery) {
@@ -442,11 +444,12 @@ mqlightClient.on('started', function() {
 		  console.log("DELIVERY:", delivery)
      });
 });
+*/
 
 app.get('/api/mq/send/:word', function(request, response){
 	var word =request.params.word
 	console.log("################################",word)
-	mqlightClient.send('mytopic', word)
+	mqlightClient.send(TOPIC_NAME, word)
 	response.send("hey! ", word, "has been published on the topic 'mytopic' ")
 })
 
